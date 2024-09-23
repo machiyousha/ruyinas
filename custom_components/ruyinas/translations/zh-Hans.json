@@ -1,0 +1,23 @@
+{
+    "config": {
+        "step": {
+            "user": {
+                "description": "开始构建RuyiNAS集成",
+                "data": {
+                    "name": "RuyiNAS集成名称",
+                    "host": "Host",
+                    "api_key": "API key",
+                    "ssl": "Use SSL",
+                    "verify_ssl": "Verify SSL certificate"
+                }
+            }
+        },
+        "error": {
+            "name_exists": "集成名字已经存在",
+            "401": "此终结点没有授权",
+            "404": "API授权出错",
+            "500": "内部错误",
+            "no_response": "主机没有返回值"
+        }
+    }
+}
