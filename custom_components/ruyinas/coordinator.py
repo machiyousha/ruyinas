@@ -205,13 +205,13 @@ class TrueNASCoordinator(DataUpdateCoordinator[None]):
                 self.ds["system_info"]["update_state"] = "unknown"
 
         self._is_scale = bool(
-            self.ds["system_info"]["version"].startswith("TrueNAS-SCALE-")
+            self.ds["system_info"]["version"].startswith("RuyiNAS-SCALE-")
         )
         if not self._version_major:
             self._version_major = int(
                 self.ds["system_info"]
                 .get("version")
-                .removeprefix("TrueNAS-")
+                .removeprefix("RuyiNAS-")
                 .removeprefix("SCALE-")
                 .split(".")[0]
             )
@@ -423,16 +423,22 @@ class TrueNASCoordinator(DataUpdateCoordinator[None]):
             if tmp_graph[i]["name"] == "cputemp":
                 if "aggregations" in tmp_graph[i]:
                     if self._is_scale and self._version_major >= 23:
-                        self.ds["system_info"]["cpu_temperature"] = round(
+                        try:
+                            self.ds["system_info"]["cpu_temperature"] = round(
                             max(tmp_graph[i]["aggregations"]["mean"].values()), 2
-                        )
+                            )
+                        except:
+                            self.ds["system_info"]["cpu_temperature"] = 0.0
                     else:
-                        self.ds["system_info"]["cpu_temperature"] = round(
-                            max(
+                        try:
+                            self.ds["system_info"]["cpu_temperature"] = round(
+                              max(
                                 list(filter(None, tmp_graph[i]["aggregations"]["mean"]))
-                            ),
-                            1,
-                        )
+                             ),
+                             1,
+                             )
+                        except:
+                            self.ds["system_info"]["cpu_temperature"] = 0.0
                 else:
                     self.ds["system_info"]["cpu_temperature"] = 0.0
 
