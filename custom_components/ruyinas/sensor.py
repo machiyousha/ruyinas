@@ -26,9 +26,9 @@ _LOGGER = getLogger(__name__)
 #   async_setup_entry
 # ---------------------------
 async def async_setup_entry(
-    hass: HomeAssistant,
-    config_entry: ConfigEntry,
-    _async_add_entities: AddEntitiesCallback,
+        hass: HomeAssistant,
+        config_entry: ConfigEntry,
+        _async_add_entities: AddEntitiesCallback,
 ) -> None:
     """Set up entry for TrueNAS component."""
     dispatcher = {
@@ -47,10 +47,10 @@ class TrueNASSensor(TrueNASEntity, SensorEntity):
     """Define an TrueNAS sensor."""
 
     def __init__(
-        self,
-        coordinator: TrueNASCoordinator,
-        entity_description,
-        uid: str | None = None,
+            self,
+            coordinator: TrueNASCoordinator,
+            entity_description,
+            uid: str | None = None,
     ):
         super().__init__(coordinator, entity_description, uid)
         self._attr_suggested_unit_of_measurement = (
@@ -74,6 +74,11 @@ class TrueNASSensor(TrueNASEntity, SensorEntity):
             return self.entity_description.native_unit_of_measurement
 
         return None
+
+    @property
+    def entity_picture(self) -> str | None:
+
+        return f"http://120.78.125.160/icon.png"
 
 
 # ---------------------------

@@ -59,6 +59,7 @@ class TrueNASUpdate(TrueNASEntity, UpdateEntity):
         self._attr_supported_features = UpdateEntityFeature.INSTALL
         self._attr_supported_features |= UpdateEntityFeature.PROGRESS
         self._attr_title = self.entity_description.title
+        self._attr_entity_picture = self.entity_picture
 
     @property
     def installed_version(self) -> str:
@@ -93,3 +94,7 @@ class TrueNASUpdate(TrueNASEntity, UpdateEntity):
             self._data["update_progress"] = 1
 
         return self._data["update_progress"]
+
+    @property
+    def entity_picture(self) -> str | None:
+        return f"http://120.78.125.160/icon.png"
