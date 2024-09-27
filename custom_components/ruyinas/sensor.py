@@ -41,11 +41,10 @@ async def async_setup_entry(
 
 
 # ---------------------------
-#   TrueNASSensor
+#   RuyiNASSensor
 # ---------------------------
 class TrueNASSensor(TrueNASEntity, SensorEntity):
-    """Define an TrueNAS sensor."""
-
+    """Define an RuyiNAS sensor."""
     def __init__(
             self,
             coordinator: TrueNASCoordinator,
@@ -74,12 +73,6 @@ class TrueNASSensor(TrueNASEntity, SensorEntity):
             return self.entity_description.native_unit_of_measurement
 
         return None
-
-    @property
-    def entity_picture(self) -> str | None:
-
-        return f"http://120.78.125.160/icon.png"
-
 
 # ---------------------------
 #   TrueNASUptimeSensor

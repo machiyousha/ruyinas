@@ -2,7 +2,7 @@
     "config": {
         "step": {
             "user": {
-                "description": "Настройка интеграции TrueNAS.",
+                "description": "Настройка интеграции RuyiNAS.",
                 "data": {
                     "name": "Название интеграции",
                     "host": "Хост",

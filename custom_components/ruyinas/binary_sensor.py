@@ -131,10 +131,10 @@ class TrueNASJailBinarySensor(TrueNASBinarySensor):
 
 
 # ---------------------------
-#   TrueNASVMBinarySensor
+#   RuyiNASVMBinarySensor
 # ---------------------------
 class TrueNASVMBinarySensor(TrueNASBinarySensor):
-    """Define a TrueNAS VM Binary Sensor."""
+    """Define a RuyiNAS VM Binary Sensor."""
 
     async def start(self, overcommit: bool = False):
         """Start a VM."""
@@ -181,10 +181,10 @@ class TrueNASVMBinarySensor(TrueNASBinarySensor):
 
 
 # ---------------------------
-#   TrueNASServiceBinarySensor
+#   RuyiNASServiceBinarySensor
 # ---------------------------
 class TrueNASServiceBinarySensor(TrueNASBinarySensor):
-    """Define a TrueNAS Service Binary Sensor."""
+    """Define a RuyiNAS Service Binary Sensor."""
 
     async def start(self):
         """Start a Service."""
