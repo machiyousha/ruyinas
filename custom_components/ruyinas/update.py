@@ -1,4 +1,4 @@
-"""TrueNAS binary sensor platform."""
+"""RuyiNAS binary sensor platform."""
 
 from __future__ import annotations
 
@@ -15,8 +15,8 @@ from homeassistant.components.update import (
     UpdateEntityFeature,
 )
 
-from .coordinator import TrueNASCoordinator
-from .entity import TrueNASEntity, async_add_entities
+from .coordinator import RuyiNASCoordinator
+from .entity import RuyiNASEntity, async_add_entities
 from .update_types import SENSOR_SERVICES, SENSOR_TYPES
 
 _LOGGER = getLogger(__name__)
@@ -33,23 +33,23 @@ async def async_setup_entry(
 ) -> None:
     """Set up device tracker for OpenMediaVault component."""
     dispatcher = {
-        "TrueNASUpdate": TrueNASUpdate,
+        "RuyiNASUpdate": RuyiNASUpdate,
     }
     await async_add_entities(hass, config_entry, dispatcher)
 
 
 # ---------------------------
-#   TrueNASUpdate
+#   RuyiNASUpdate
 # ---------------------------
-class TrueNASUpdate(TrueNASEntity, UpdateEntity):
-    """Define an TrueNAS Update Sensor."""
+class RuyiNASUpdate(RuyiNASEntity, UpdateEntity):
+    """Define an RuyiNAS Update Sensor."""
 
     TYPE = DEVICE_UPDATE
     _attr_device_class = UpdateDeviceClass.FIRMWARE
 
     def __init__(
         self,
-        coordinator: TrueNASCoordinator,
+        coordinator: RuyiNASCoordinator,
         entity_description,
         uid: str | None = None,
     ):

@@ -1,4 +1,4 @@
-"""TrueNAS Controller."""
+"""RuyiNAS Controller."""
 
 from __future__ import annotations
 
@@ -20,7 +20,7 @@ from homeassistant.const import (
     CONF_VERIFY_SSL,
 )
 
-from .api import TrueNASAPI
+from .api import RuyiNASAPI
 from .apiparser import parse_api, utc_from_timestamp
 from .const import DOMAIN
 
@@ -30,11 +30,11 @@ _LOGGER = logging.getLogger(__name__)
 # ---------------------------
 #   RuyiNASControllerData
 # ---------------------------
-class TrueNASCoordinator(DataUpdateCoordinator[None]):
+class RuyiNASCoordinator(DataUpdateCoordinator[None]):
     """RuyiCoordinator Class."""
 
     def __init__(self, hass: HomeAssistant, config_entry: ConfigEntry):
-        """Initialize TrueNASCoordinator."""
+        """Initialize RuyiNASCoordinator."""
         self.hass = hass
         self.config_entry: ConfigEntry = config_entry
 
@@ -63,7 +63,7 @@ class TrueNASCoordinator(DataUpdateCoordinator[None]):
             "app": {},
         }
 
-        self.api = TrueNASAPI(
+        self.api = RuyiNASAPI(
             hass,
             config_entry.data[CONF_HOST],
             config_entry.data[CONF_API_KEY],
@@ -90,7 +90,7 @@ class TrueNASCoordinator(DataUpdateCoordinator[None]):
     #   _async_update_data
     # ---------------------------
     async def _async_update_data(self):
-        """Update TrueNAS data."""
+        """Update RuyiNAS data."""
         await self.hass.async_add_executor_job(self.get_systeminfo)
         if self.api.connected():
             await self.hass.async_add_executor_job(self.get_systemstats)
@@ -129,7 +129,7 @@ class TrueNASCoordinator(DataUpdateCoordinator[None]):
     #   get_systeminfo
     # ---------------------------
     def get_systeminfo(self) -> None:
-        """Get system info from TrueNAS."""
+        """Get system info from RuyiNAS."""
         self.ds["system_info"] = parse_api(
             data=self.ds["system_info"],
             source=self.api.query("system/info"),
@@ -407,7 +407,7 @@ class TrueNASCoordinator(DataUpdateCoordinator[None]):
                         self._systemstats_errored.append(tmp["name"])
 
                 _LOGGER.warning(
-                    "TrueNAS %s fetching following graphs failed, check your NAS: %s",
+                    "RuyiNAS %s fetching following graphs failed, check your NAS: %s",
                     self.host,
                     self._systemstats_errored,
                 )
@@ -618,7 +618,7 @@ class TrueNASCoordinator(DataUpdateCoordinator[None]):
     #   get_service
     # ---------------------------
     def get_service(self) -> None:
-        """Get service info from TrueNAS."""
+        """Get service info from RuyiNAS."""
         self.ds["service"] = parse_api(
             data=self.ds["service"],
             source=self.api.query("service"),
@@ -641,7 +641,7 @@ class TrueNASCoordinator(DataUpdateCoordinator[None]):
     #   get_pool
     # ---------------------------
     def get_pool(self) -> None:
-        """Get pools from TrueNAS."""
+        """Get pools from RuyiNAS."""
         self.ds["pool"] = parse_api(
             data=self.ds["pool"],
             source=self.api.query("pool"),
@@ -803,7 +803,7 @@ class TrueNASCoordinator(DataUpdateCoordinator[None]):
     #   get_dataset
     # ---------------------------
     def get_dataset(self) -> None:
-        """Get datasets from TrueNAS."""
+        """Get datasets from RuyiNAS."""
         self.ds["dataset"] = parse_api(
             data={},
             source=self.api.query("pool/dataset"),
@@ -916,7 +916,7 @@ class TrueNASCoordinator(DataUpdateCoordinator[None]):
     #   get_disk
     # ---------------------------
     def get_disk(self) -> None:
-        """Get disks from TrueNAS."""
+        """Get disks from RuyiNAS."""
         self.ds["disk"] = parse_api(
             data=self.ds["disk"],
             source=self.api.query("disk"),
@@ -954,13 +954,13 @@ class TrueNASCoordinator(DataUpdateCoordinator[None]):
                 if vals["name"] in temps:  # looks for devname here
                     self.ds["disk"][uid]["temperature"] = temps[vals["name"]]
                     # return devname temp to uid disk
-                    # I feel like this will break in the future when TrueNAS updates to a more sensible system. Currently their own long term stats are broken by the changing devnames.
+                    # I feel like this will break in the future when RuyiNAS updates to a more sensible system. Currently their own long term stats are broken by the changing devnames.
 
     # ---------------------------
     #   get_jail
     # ---------------------------
     def get_jail(self) -> None:
-        """Get jails from TrueNAS."""
+        """Get jails from RuyiNAS."""
         if self._is_scale:
             return
 
@@ -987,7 +987,7 @@ class TrueNASCoordinator(DataUpdateCoordinator[None]):
     #   get_vm
     # ---------------------------
     def get_vm(self) -> None:
-        """Get VMs from TrueNAS."""
+        """Get VMs from RuyiNAS."""
         self.ds["vm"] = parse_api(
             data=self.ds["vm"],
             source=self.api.query("vm"),
@@ -1015,7 +1015,7 @@ class TrueNASCoordinator(DataUpdateCoordinator[None]):
     #   get_cloudsync
     # ---------------------------
     def get_cloudsync(self) -> None:
-        """Get cloudsync from TrueNAS."""
+        """Get cloudsync from RuyiNAS."""
         self.ds["cloudsync"] = parse_api(
             data=self.ds["cloudsync"],
             source=self.api.query("cloudsync"),
@@ -1054,7 +1054,7 @@ class TrueNASCoordinator(DataUpdateCoordinator[None]):
     #   get_replication
     # ---------------------------
     def get_replication(self) -> None:
-        """Get replication from TrueNAS."""
+        """Get replication from RuyiNAS."""
         self.ds["replication"] = parse_api(
             data=self.ds["replication"],
             source=self.api.query("replication"),
@@ -1096,7 +1096,7 @@ class TrueNASCoordinator(DataUpdateCoordinator[None]):
     #   get_snapshottask
     # ---------------------------
     def get_snapshottask(self) -> None:
-        """Get replication from TrueNAS."""
+        """Get replication from RuyiNAS."""
         self.ds["snapshottask"] = parse_api(
             data=self.ds["snapshottask"],
             source=self.api.query("pool/snapshottask"),
@@ -1125,7 +1125,7 @@ class TrueNASCoordinator(DataUpdateCoordinator[None]):
     #   get_app
     # ---------------------------
     def get_app(self) -> None:
-        """Get Apps from TrueNAS."""
+        """Get Apps from RuyiNAS."""
         if not self._is_scale:
             return
 

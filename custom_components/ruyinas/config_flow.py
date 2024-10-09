@@ -1,4 +1,4 @@
-"""Config flow to configure TrueNAS."""
+"""Config flow to configure RuyiNAS."""
 
 from __future__ import annotations
 
@@ -25,7 +25,7 @@ from .const import (
     DEFAULT_SSL_VERIFY,
     DOMAIN,
 )
-from .api import TrueNASAPI
+from .api import RuyiNASAPI
 
 _LOGGER = getLogger(__name__)
 
@@ -42,10 +42,10 @@ def configured_instances(hass):
 
 
 # ---------------------------
-#   TrueNASConfigFlow
+#   RuyiNASConfigFlow
 # ---------------------------
-class TrueNASConfigFlow(ConfigFlow, domain=DOMAIN):
-    """TrueNASConfigFlow class."""
+class RuyiNASConfigFlow(ConfigFlow, domain=DOMAIN):
+    """RuyiNASConfigFlow class."""
 
     VERSION = 1
     CONNECTION_CLASS = CONN_CLASS_LOCAL_POLL
@@ -68,7 +68,7 @@ class TrueNASConfigFlow(ConfigFlow, domain=DOMAIN):
 
             # Test connection
             api = await self.hass.async_add_executor_job(
-                TrueNASAPI,
+                RuyiNASAPI,
                 self.hass,
                 user_input[CONF_HOST],
                 user_input[CONF_API_KEY],
@@ -81,7 +81,7 @@ class TrueNASConfigFlow(ConfigFlow, domain=DOMAIN):
             )
             if not conn:
                 errors[CONF_HOST] = errorcode
-                _LOGGER.error("TrueNAS connection error (%s)", errorcode)
+                _LOGGER.error("RuyiNAS connection error (%s)", errorcode)
 
             # Save instance
             if not errors:

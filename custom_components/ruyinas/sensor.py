@@ -1,4 +1,4 @@
-"""TrueNAS sensor platform."""
+"""RuyiNAS sensor platform."""
 
 from __future__ import annotations
 
@@ -12,8 +12,8 @@ from homeassistant.core import HomeAssistant
 from homeassistant.helpers.typing import StateType
 from homeassistant.helpers.entity_platform import AddEntitiesCallback
 
-from .coordinator import TrueNASCoordinator
-from .entity import TrueNASEntity, async_add_entities
+from .coordinator import RuyiNASCoordinator
+from .entity import RuyiNASEntity, async_add_entities
 from .sensor_types import (
     SENSOR_SERVICES,
     SENSOR_TYPES,
@@ -30,12 +30,12 @@ async def async_setup_entry(
         config_entry: ConfigEntry,
         _async_add_entities: AddEntitiesCallback,
 ) -> None:
-    """Set up entry for TrueNAS component."""
+    """Set up entry for RuyiNAS component."""
     dispatcher = {
-        "TrueNASSensor": TrueNASSensor,
-        "TrueNASUptimeSensor": TrueNASUptimeSensor,
-        "TrueNASClousyncSensor": TrueNASClousyncSensor,
-        "TrueNASDatasetSensor": TrueNASDatasetSensor,
+        "RuyiNASSensor": RuyiNASSensor,
+        "RuyiNASUptimeSensor": RuyiNASUptimeSensor,
+        "RuyiNASClousyncSensor": RuyiNASClousyncSensor,
+        "RuyiNASDatasetSensor": RuyiNASDatasetSensor,
     }
     await async_add_entities(hass, config_entry, dispatcher)
 
@@ -43,11 +43,11 @@ async def async_setup_entry(
 # ---------------------------
 #   RuyiNASSensor
 # ---------------------------
-class TrueNASSensor(TrueNASEntity, SensorEntity):
+class RuyiNASSensor(RuyiNASEntity, SensorEntity):
     """Define an RuyiNAS sensor."""
     def __init__(
             self,
-            coordinator: TrueNASCoordinator,
+            coordinator: RuyiNASCoordinator,
             entity_description,
             uid: str | None = None,
     ):
@@ -75,13 +75,13 @@ class TrueNASSensor(TrueNASEntity, SensorEntity):
         return None
 
 # ---------------------------
-#   TrueNASUptimeSensor
+#   RuyiNASUptimeSensor
 # ---------------------------
-class TrueNASUptimeSensor(TrueNASSensor):
-    """Define an TrueNAS Uptime sensor."""
+class RuyiNASUptimeSensor(RuyiNASSensor):
+    """Define an RuyiNAS Uptime sensor."""
 
     async def restart(self) -> None:
-        """Restart TrueNAS systen."""
+        """Restart RuyiNAS systen."""
         await self.hass.async_add_executor_job(
             self.coordinator.api.query,
             "system/reboot",
@@ -89,7 +89,7 @@ class TrueNASUptimeSensor(TrueNASSensor):
         )
 
     async def stop(self) -> None:
-        """Shutdown TrueNAS systen."""
+        """Shutdown RuyiNAS systen."""
         await self.hass.async_add_executor_job(
             self.coordinator.api.query,
             "system/shutdown",
@@ -98,10 +98,10 @@ class TrueNASUptimeSensor(TrueNASSensor):
 
 
 # ---------------------------
-#   TrueNASDatasetSensor
+#   RuyiNASDatasetSensor
 # ---------------------------
-class TrueNASDatasetSensor(TrueNASSensor):
-    """Define an TrueNAS Dataset sensor."""
+class RuyiNASDatasetSensor(RuyiNASSensor):
+    """Define an RuyiNAS Dataset sensor."""
 
     async def snapshot(self) -> None:
         """Create dataset snapshot."""
@@ -115,10 +115,10 @@ class TrueNASDatasetSensor(TrueNASSensor):
 
 
 # ---------------------------
-#   TrueNASClousyncSensor
+#   RuyiNASClousyncSensor
 # ---------------------------
-class TrueNASClousyncSensor(TrueNASSensor):
-    """Define an TrueNAS Cloudsync sensor."""
+class RuyiNASClousyncSensor(RuyiNASSensor):
+    """Define an RuyiNAS Cloudsync sensor."""
 
     async def start(self) -> None:
         """Run cloudsync job."""

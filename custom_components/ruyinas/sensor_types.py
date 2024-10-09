@@ -1,4 +1,4 @@
-"""Definitions for TrueNAS sensor entities."""
+"""Definitions for RuyiNAS sensor entities."""
 
 from __future__ import annotations
 
@@ -149,7 +149,7 @@ DEVICE_ATTRIBUTES_SNAPSHOTTASK = [
 
 
 @dataclass
-class TrueNASSensorEntityDescription(SensorEntityDescription):
+class RuyiNASSensorEntityDescription(SensorEntityDescription):
     """Class describing entities."""
 
     ha_group: str | None = None
@@ -161,11 +161,11 @@ class TrueNASSensorEntityDescription(SensorEntityDescription):
     data_uid: str | None = None
     data_reference: str | None = None
     data_attributes_list: List = field(default_factory=lambda: [])
-    func: str = "TrueNASSensor"
+    func: str = "RuyiNASSensor"
 
 
-SENSOR_TYPES: tuple[TrueNASSensorEntityDescription, ...] = (
-    TrueNASSensorEntityDescription(
+SENSOR_TYPES: tuple[RuyiNASSensorEntityDescription, ...] = (
+    RuyiNASSensorEntityDescription(
         key="system_uptime",
         name="Uptime",
         icon="mdi:clock-outline",
@@ -179,9 +179,9 @@ SENSOR_TYPES: tuple[TrueNASSensorEntityDescription, ...] = (
         data_name="",
         data_uid="",
         data_reference="",
-        func="TrueNASUptimeSensor",
+        func="RuyiNASUptimeSensor",
     ),
-    TrueNASSensorEntityDescription(
+    RuyiNASSensorEntityDescription(
         key="system_cpu_temperature",
         name="Temperature",
         icon="mdi:thermometer",
@@ -198,7 +198,7 @@ SENSOR_TYPES: tuple[TrueNASSensorEntityDescription, ...] = (
         data_uid="",
         data_reference="",
     ),
-    TrueNASSensorEntityDescription(
+    RuyiNASSensorEntityDescription(
         key="system_load_shortterm",
         name="CPU load shortterm",
         icon="mdi:gauge",
@@ -213,7 +213,7 @@ SENSOR_TYPES: tuple[TrueNASSensorEntityDescription, ...] = (
         data_uid="",
         data_reference="",
     ),
-    TrueNASSensorEntityDescription(
+    RuyiNASSensorEntityDescription(
         key="system_load_midterm",
         name="CPU load midterm",
         icon="mdi:gauge",
@@ -228,7 +228,7 @@ SENSOR_TYPES: tuple[TrueNASSensorEntityDescription, ...] = (
         data_uid="",
         data_reference="",
     ),
-    TrueNASSensorEntityDescription(
+    RuyiNASSensorEntityDescription(
         key="system_load_longterm",
         name="CPU load longterm",
         icon="mdi:gauge",
@@ -243,7 +243,7 @@ SENSOR_TYPES: tuple[TrueNASSensorEntityDescription, ...] = (
         data_uid="",
         data_reference="",
     ),
-    TrueNASSensorEntityDescription(
+    RuyiNASSensorEntityDescription(
         key="system_cpu_usage",
         name="CPU usage",
         icon="mdi:cpu-64-bit",
@@ -259,7 +259,7 @@ SENSOR_TYPES: tuple[TrueNASSensorEntityDescription, ...] = (
         data_reference="",
         data_attributes_list=DEVICE_ATTRIBUTES_CPU,
     ),
-    TrueNASSensorEntityDescription(
+    RuyiNASSensorEntityDescription(
         key="system_memory_usage",
         name="Memory usage",
         icon="mdi:memory",
@@ -275,7 +275,7 @@ SENSOR_TYPES: tuple[TrueNASSensorEntityDescription, ...] = (
         data_reference="",
         data_attributes_list=DEVICE_ATTRIBUTES_MEMORY,
     ),
-    TrueNASSensorEntityDescription(
+    RuyiNASSensorEntityDescription(
         key="system_cache_size-arc_value",
         name="ARC size",
         icon="mdi:memory",
@@ -292,7 +292,7 @@ SENSOR_TYPES: tuple[TrueNASSensorEntityDescription, ...] = (
         data_uid="",
         data_reference="",
     ),
-    TrueNASSensorEntityDescription(
+    RuyiNASSensorEntityDescription(
         key="dataset",
         name="",
         icon="mdi:database",
@@ -309,9 +309,9 @@ SENSOR_TYPES: tuple[TrueNASSensorEntityDescription, ...] = (
         data_uid="",
         data_reference="id",
         data_attributes_list=DEVICE_ATTRIBUTES_DATASET,
-        func="TrueNASDatasetSensor",
+        func="RuyiNASDatasetSensor",
     ),
-    TrueNASSensorEntityDescription(
+    RuyiNASSensorEntityDescription(
         key="disk",
         name="",
         icon="mdi:harddisk",
@@ -329,7 +329,7 @@ SENSOR_TYPES: tuple[TrueNASSensorEntityDescription, ...] = (
         data_reference="identifier",
         data_attributes_list=DEVICE_ATTRIBUTES_DISK,
     ),
-    TrueNASSensorEntityDescription(
+    RuyiNASSensorEntityDescription(
         key="pool_free",
         name="free",
         icon="mdi:database-settings",
@@ -347,7 +347,7 @@ SENSOR_TYPES: tuple[TrueNASSensorEntityDescription, ...] = (
         data_reference="guid",
         data_attributes_list=DEVICE_ATTRIBUTES_POOL,
     ),
-    TrueNASSensorEntityDescription(
+    RuyiNASSensorEntityDescription(
         key="cloudsync",
         name="",
         icon="mdi:cloud-upload",
@@ -362,9 +362,9 @@ SENSOR_TYPES: tuple[TrueNASSensorEntityDescription, ...] = (
         data_uid="",
         data_reference="id",
         data_attributes_list=DEVICE_ATTRIBUTES_CLOUDSYNC,
-        func="TrueNASClousyncSensor",
+        func="RuyiNASClousyncSensor",
     ),
-    TrueNASSensorEntityDescription(
+    RuyiNASSensorEntityDescription(
         key="replication",
         name="",
         icon="mdi:transfer",
@@ -380,7 +380,7 @@ SENSOR_TYPES: tuple[TrueNASSensorEntityDescription, ...] = (
         data_reference="id",
         data_attributes_list=DEVICE_ATTRIBUTES_REPLICATION,
     ),
-    TrueNASSensorEntityDescription(
+    RuyiNASSensorEntityDescription(
         key="snapshottask",
         name="",
         icon="mdi:checkbox-marked-circle-plus-outline",
@@ -396,7 +396,7 @@ SENSOR_TYPES: tuple[TrueNASSensorEntityDescription, ...] = (
         data_reference="id",
         data_attributes_list=DEVICE_ATTRIBUTES_SNAPSHOTTASK,
     ),
-    TrueNASSensorEntityDescription(
+    RuyiNASSensorEntityDescription(
         key="traffic_rx",
         name="RX",
         icon="mdi:download-network-outline",
@@ -414,7 +414,7 @@ SENSOR_TYPES: tuple[TrueNASSensorEntityDescription, ...] = (
         data_reference="id",
         data_attributes_list=DEVICE_ATTRIBUTES_NETWORK,
     ),
-    TrueNASSensorEntityDescription(
+    RuyiNASSensorEntityDescription(
         key="traffic_tx",
         name="TX",
         icon="mdi:upload-network-outline",

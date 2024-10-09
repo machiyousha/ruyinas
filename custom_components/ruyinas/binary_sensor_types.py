@@ -83,7 +83,7 @@ DEVICE_ATTRIBUTES_APP = [
 
 
 @dataclass
-class TrueNASBinarySensorEntityDescription(BinarySensorEntityDescription):
+class RuyiNASBinarySensorEntityDescription(BinarySensorEntityDescription):
     """Class describing entities."""
 
     icon_enabled: str | None = None
@@ -97,11 +97,11 @@ class TrueNASBinarySensorEntityDescription(BinarySensorEntityDescription):
     data_uid: str | None = None
     data_reference: str | None = None
     data_attributes_list: List = field(default_factory=lambda: [])
-    func: str = "TrueNASBinarySensor"
+    func: str = "RuyiNASBinarySensor"
 
 
 SENSOR_TYPES: tuple[BinarySensorEntityDescription, ...] = (
-    TrueNASBinarySensorEntityDescription(
+    RuyiNASBinarySensorEntityDescription(
         key="pool_healthy",
         name="healthy",
         icon_enabled="mdi:database",
@@ -116,7 +116,7 @@ SENSOR_TYPES: tuple[BinarySensorEntityDescription, ...] = (
         data_reference="guid",
         data_attributes_list=DEVICE_ATTRIBUTES_POOL,
     ),
-    TrueNASBinarySensorEntityDescription(
+    RuyiNASBinarySensorEntityDescription(
         key="jail",
         name="",
         icon_enabled="mdi:layers",
@@ -130,9 +130,9 @@ SENSOR_TYPES: tuple[BinarySensorEntityDescription, ...] = (
         data_uid="",
         data_reference="id",
         data_attributes_list=DEVICE_ATTRIBUTES_JAIL,
-        func="TrueNASJailBinarySensor",
+        func="RuyiNASJailBinarySensor",
     ),
-    TrueNASBinarySensorEntityDescription(
+    RuyiNASBinarySensorEntityDescription(
         key="vm",
         name="",
         icon_enabled="mdi:server",
@@ -146,9 +146,9 @@ SENSOR_TYPES: tuple[BinarySensorEntityDescription, ...] = (
         data_uid="",
         data_reference="id",
         data_attributes_list=DEVICE_ATTRIBUTES_VM,
-        func="TrueNASVMBinarySensor",
+        func="RuyiNASVMBinarySensor",
     ),
-    TrueNASBinarySensorEntityDescription(
+    RuyiNASBinarySensorEntityDescription(
         key="service",
         name="",
         icon_enabled="mdi:cog",
@@ -162,9 +162,9 @@ SENSOR_TYPES: tuple[BinarySensorEntityDescription, ...] = (
         data_uid="",
         data_reference="id",
         data_attributes_list=DEVICE_ATTRIBUTES_SERVICE,
-        func="TrueNASServiceBinarySensor",
+        func="RuyiNASServiceBinarySensor",
     ),
-    TrueNASBinarySensorEntityDescription(
+    RuyiNASBinarySensorEntityDescription(
         key="app",
         name="",
         icon_enabled="mdi:server",
@@ -178,7 +178,7 @@ SENSOR_TYPES: tuple[BinarySensorEntityDescription, ...] = (
         data_uid="",
         data_reference="id",
         data_attributes_list=DEVICE_ATTRIBUTES_APP,
-        func="TrueNASAppBinarySensor",
+        func="RuyiNASAppBinarySensor",
     ),
 )
 

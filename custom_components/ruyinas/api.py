@@ -18,7 +18,7 @@ disable_warnings(InsecureRequestWarning)
 # ---------------------------
 #   RuyiNASAPI
 # ---------------------------
-class TrueNASAPI(object):
+class RuyiNASAPI(object):
     """Handle all communication with RuyiNAS."""
 
     def __init__(
@@ -29,7 +29,7 @@ class TrueNASAPI(object):
         use_ssl: bool = False,
         verify_ssl: bool = True,
     ) -> None:
-        """Initialize the TrueNAS API."""
+        """Initialize the RuyiNAS API."""
         self._hass = hass
         self._host = host
         self._use_ssl = use_ssl
@@ -66,7 +66,7 @@ class TrueNASAPI(object):
     def query(
         self, service: str, method: str = "get", params: dict[str, Any] | None = {}
     ) -> Optional(list):
-        """Retrieve data from TrueNAS."""
+        """Retrieve data from RuyiNAS."""
         self.lock.acquire()
         error = False
         try:

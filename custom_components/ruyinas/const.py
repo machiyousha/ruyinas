@@ -1,4 +1,4 @@
-"""Constants used by the TrueNAS integration."""
+"""Constants used by the RuyiNAS integration."""
 
 import voluptuous as vol
 

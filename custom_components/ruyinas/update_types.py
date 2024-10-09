@@ -1,4 +1,4 @@
-"""Definitions for TrueNAS update entities."""
+"""Definitions for RuyiNAS update entities."""
 
 from __future__ import annotations
 
@@ -9,7 +9,7 @@ from homeassistant.components.update import UpdateEntityDescription
 
 
 @dataclass
-class TrueNASUpdateEntityDescription(UpdateEntityDescription):
+class RuyiNASUpdateEntityDescription(UpdateEntityDescription):
     """Class describing entities."""
 
     ha_group: str | None = None
@@ -22,15 +22,15 @@ class TrueNASUpdateEntityDescription(UpdateEntityDescription):
     data_uid: str | None = None
     data_reference: str | None = None
     data_attributes_list: List = field(default_factory=lambda: [])
-    func: str = "TrueNASUpdate"
+    func: str = "RuyiNASUpdate"
 
 
-SENSOR_TYPES: tuple[TrueNASUpdateEntityDescription, ...] = (
-    TrueNASUpdateEntityDescription(
+SENSOR_TYPES: tuple[RuyiNASUpdateEntityDescription, ...] = (
+    RuyiNASUpdateEntityDescription(
         key="system_update",
         name="Update",
         ha_group="System",
-        title="TrueNAS",
+        title="RuyiNAS",
         data_path="system_info",
         data_attribute="update_available",
         data_name="",

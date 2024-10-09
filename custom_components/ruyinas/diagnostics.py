@@ -1,4 +1,4 @@
-"""Diagnostics support for TrueNAS."""
+"""Diagnostics support for RuyiNAS."""
 
 from __future__ import annotations
 

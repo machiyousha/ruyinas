@@ -1,4 +1,4 @@
-"""TrueNAS HA shared entity model."""
+"""RuyiNAS HA shared entity model."""
 
 from __future__ import annotations
 
@@ -22,7 +22,7 @@ from .const import (
     ATTRIBUTION,
     DOMAIN,
 )
-from .coordinator import TrueNASCoordinator
+from .coordinator import RuyiNASCoordinator
 from .helper import format_attribute
 
 _LOGGER = getLogger(__name__)
@@ -87,16 +87,16 @@ async def async_add_entities(
 
 
 # ---------------------------
-#   TrueNASEntity
+#   RuyiNASEntity
 # ---------------------------
-class TrueNASEntity(CoordinatorEntity[TrueNASCoordinator], Entity):
+class RuyiNASEntity(CoordinatorEntity[RuyiNASCoordinator], Entity):
     """Define entity."""
 
     _attr_has_entity_name = True
 
     def __init__(
         self,
-        coordinator: TrueNASCoordinator,
+        coordinator: RuyiNASCoordinator,
         entity_description,
         uid: str | None = None,
     ):
