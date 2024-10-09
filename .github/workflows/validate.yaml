@@ -16,4 +16,4 @@ jobs:
         uses: "hacs/action@main"
         with:
           category: "integration"
-          ignore: information topics description images brands 
+          ignore: information topics description images brands
