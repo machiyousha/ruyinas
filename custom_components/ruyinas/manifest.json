@@ -7,6 +7,7 @@
     "dependencies": [],
     "iot_class": "local_polling",
     "documentation":"https://github.com/machiyousha/ruyinas",
+    "issue_tracker": "https://github.com/machiyousha/ruyinas/issues",
     "requirements": [],
     "version": "0.0.0"
 }
