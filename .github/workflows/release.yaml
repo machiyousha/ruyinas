@@ -43,6 +43,3 @@ jobs:
         run: |
           python3 -m pip install setuptools wheel PyGithub
 
-      - name: Update release notes
-        run: |
-          python3 /home/runner/work/ruyinas/ruyinas/.github/generate_releasenotes.py --token ${{ secrets.GITHUB_TOKEN }} --release yes --tag ${{ github.ref }}
